@@ -6,9 +6,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface ApplicationManager {
-    void inFormLogin();
+    void loginAs(User user);
 
-    void loginAs(User user) throws InterruptedException;
+    void checkLoginSuccess(User user);
 
-    void writeEmail(Email email) throws InterruptedException;
+    void fillEmailAndSave(Email email);
+
+    void checkSave(Email email);
+
+    void fillEmailAndSend(Email email);
+
+    void checkSend(Email email);
+
+    void logout();
+
+    void checkLogout();
 }

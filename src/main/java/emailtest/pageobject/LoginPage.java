@@ -1,15 +1,17 @@
 package emailtest.pageobject;
 
 import emailtest.model.User;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Data
 @Component
 public class LoginPage extends BasePage{
+    @Getter
+    public final String URL = "";
 
     @FindBy(name = "login")
     WebElement inputLogin;
@@ -20,10 +22,27 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//span[text()='Войти']/parent::button")
     WebElement submitButton;
 
+    @Autowired
+    public LoginPage(WebDriver webDriver) {
+        super(webDriver);
+    }
+
+    public void fillLogin(String login){
+        super.waitUntilElementVisible(inputLogin).sendKeys(login);
+    }
+
+    public void fillPassword(String password){
+        super.waitUntilElementVisible(inputPassword).sendKeys(password);
+    }
+
+    public void inputSubmit(){
+        super.waitUntilElementVisible(submitButton).click();
+    }
+
     public void loginAs(User user){
-        inputLogin.sendKeys(user.getLogin());
-        submitButton.click();
-        inputPassword.sendKeys(user.getPassword());
-        submitButton.click();
+        fillLogin(user.getLogin());
+        inputSubmit();
+        fillPassword(user.getPassword());
+        inputSubmit();
     }
 }

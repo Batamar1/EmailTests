@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 public class PageManager {
-    private HomePage homePage;
-    private LoginPage loginPage;
-    private EmailBoxPage emailBoxPage;
+    private final HomePage homePage;
+    private final LoginPage loginPage;
+    private final EmailBoxPage emailBoxPage;
 
     @Autowired
     public PageManager(HomePage homePage, LoginPage loginPage, EmailBoxPage emailBoxPage) {

@@ -1,19 +1,26 @@
 package emailtest.pageobject;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Data
 @Component
 public class HomePage extends BasePage{
+    @Getter
+    public final String URL = "https://mail.yandex.ru/";
+
     @FindBy(xpath = "//span[text()='Войти']/parent::a")
     private WebElement buttonLogin;
 
+    @Autowired
+    public HomePage(WebDriver webDriver) {
+        super(webDriver);
+    }
+
     public void clickButtonLogin(){
-        buttonLogin.click();
+        super.waitUntilElementVisible(buttonLogin).click();
     }
 }
