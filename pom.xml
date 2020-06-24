@@ -86,7 +86,7 @@
             <version>2.13.0</version>
         </dependency>
 
-        
+
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
